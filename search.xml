@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[vagrant的安装&简单的配置]]></title>
-    <url>%2F2018%2F10%2F05%2Fvagrant%2F</url>
-    <content type="text"><![CDATA[一般服务器上的运行环境都是Linux，如果开发者项目在本地 （windows）上运行正常的话，放到服务器上会出现一些bug，这是开发环境和生成环境不一致而造成的。这就需要一个和服务器运行环境一致的开发环境。当时打算做个双系统，在做之前组长推荐了vagrant虚拟机，发现内存占用并不是很大，而且还可以在开发的时候用Windows上的软件，非常的方便。 一段时间后组内人的vagrant的虚拟机由于种种扫操作，很多都烂掉了，重装的时候又遇到了各种各样的坑。作为为数不多的vagrant虚拟机还健在的人，被强迫又装了一个，记录了搭建vagrant环境的一些步骤和踩过的坑。 提前准备 先确保电脑已经在BIOS中开启了虚拟化技术（大部分Windows笔记本可以通过拿小针插电源插口旁的小孔进入BIOS设置。进入后在Configuration中将Intel Virtualization Technology改为Enable，然后保存并退出。） 安装VirtualBox下载后一路傻瓜式安装（不要安装最新版——来自组长的提醒 ） 安装vagrant下载后一路傻瓜式安装(先安装VirtualBox在安装vagrant) vagrant up &amp; ssh提前准备在做好以后就可以开始搞事情了。创建一个文件夹，命名为ubuntu。可以利用git bash、cmder或者cmd进入这个文件夹。然后选一个Vagrant Box(我选的是Ubuntu 16.04，以此为例) 也可以迅雷下载box，然后添加到ubuntu文件夹中，然后 vagrant init box的名称接下啦，运行vagrant up启动虚拟机。将会非常漫长。up好以后打开VirtualBox客户端可以看到虚拟机已经正常启动。打开ubuntu会出有vagrantfile和.vagrant文件夹up好以后就可以通过ssh访问虚拟机，部分电脑用git bash会出现这种情况很无奈，只好用cmd ssh登录了到此，vagrant就安装好了。 vagrant配置vagrant端口转发在vagrantfile中取消下面几行的注释 具体的vagrant的三种网络配置的作用可以参考这篇博文：Vagrant 三种网络配置详解 vagrant 共享文件夹在vagrantfile中进行修改这样我就可以在把项目放在D盘的project下，然后在主机使用IDE写代码，在虚拟机中运行。最后记得vagrant reload 重启vagrant，让vagrantfile里面的配置生效 本机连接vagrant的mysql修改1234ubuntu16.04应该在```/etc/mysql/mysql.conf.d```下将```mysqld.cnf```中的```bind_address=127.0.0.1```改为```bind_address=0.0.0.0 重启mysql service mysql reload```12然后设置mysql允许远程访问 mysql -u root -puse mysql;update user set host = ‘%’ where user = ‘root’;exit;` 然后重启一下vagrant Updating]]></content>
-      <categories>
-        <category>vagrant</category>
-      </categories>
-      <tags>
-        <tag>vagrant ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[ubuntu上安装composer和laravel]]></title>
     <url>%2F2018%2F10%2F05%2Fubuntu%2Blaravel%2F</url>
-    <content type="text"><![CDATA[ubuntu上安装PHP框架laravel。 准备服务器要求laravel框架对系统的要求可以用Laravel Homestead 虚拟机满足，如果不使用Homestead作为开发环境需要服务器符合以下要求： PHP &gt;= 7.0.0 PHP OpenSSL 扩展 PHP PDO 扩展 PHP Mbstring扩展 PHP Tokenizer 扩展 PHP XML 扩展 安装PHP扩展 安装配置composer安装composer依次输入下面命令安装composer 1php -r &quot;copy(&apos;https://install.phpcomposer.com/installer&apos;,&apos;composer-setup.php&apos;);&quot;下载安装脚本 － composer-setup.php － 到当前目录。 1php composer-setup.php执行安装过程 1php -r &quot;unlink(&apos;composer-setup.php&apos;);&quot;删除安装脚本 全局安装 1sudo mv composer.phar /usr/local/bin/composer 安装完以后-v```12345678![composer](/uploads/laravel/composer.png)说明安装成功了。#### 配置composer修改composer的全局配置文件 composer config -g repo.packagist composer https://packagist.phpcomposer.com12然后执行```composer selfupdate 安装配置laravel安装laravel 1composer global require &quot;laravel/installer=~1.1&quot; 配置laravel PATH123456并填加在```/etc/bash.bashrc```执行```source ~/.bashrc```让环境变量立即生效然后就去```/var/www```新建一个laravel项目```laravel new laravel 在laravel new的时候会报几个文件没有权限，直接给777权限就OK了。 修改laravel目录权限 12sudo chown -R :www-data /var/www/laravelsudo chmod -R 775 /var/www/laravel/storage 然后laravel就弄好了，跑起来吧。]]></content>
+    <content type="text"><![CDATA[ubuntu上安装PHP框架laravel。 准备服务器要求laravel框架对系统的要求可以用Laravel Homestead 虚拟机满足，如果不使用Homestead作为开发环境需要服务器符合以下要求： PHP &gt;= 7.0.0 PHP OpenSSL 扩展 PHP PDO 扩展 PHP Mbstring扩展 PHP Tokenizer 扩展 PHP XML 扩展 安装PHP扩展 安装配置composer安装composer依次输入下面命令安装composer 1php -r &quot;copy(&apos;https://install.phpcomposer.com/installer&apos;,&apos;composer-setup.php&apos;);&quot;下载安装脚本 － composer-setup.php － 到当前目录。 1php composer-setup.php执行安装过程 1php -r &quot;unlink(&apos;composer-setup.php&apos;);&quot;删除安装脚本 全局安装 1sudo mv composer.phar /usr/local/bin/composer 安装完以后查看composer版本 composer -v 说明安装成功了。 配置composer修改composer的全局配置文件 1composer config -g repo.packagist composer https://packagist.phpcomposer.com 然后执行 composer selfupdate 安装配置laravel安装laravel 1composer global require &quot;laravel/installer=~1.1&quot; 配置laravel使用下面语句添加环境变量1export PATH=&quot;~/.config/composer/vendor/bin:$PATH&quot; 并填加在 /etc/bash.bashrc 执行 source ~/.bashrc 让环境变量立即生效 然后就去 /var/www新建一个laravel项目 1laravel new laravel 在laravel new的时候会报几个文件没有权限，直接给777权限就OK了。 修改laravel目录权限 12sudo chown -R :www-data /var/www/laravelsudo chmod -R 775 /var/www/laravel/storage 然后laravel就弄好了，可以开始表演了。]]></content>
       <categories>
         <category>laravel</category>
       </categories>
       <tags>
-        <tag>vagrant ubuntu laravel</tag>
+        <tag>laravel</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[ubuntu上nginx+PHP7.1+mysql的安装及配置]]></title>
     <url>%2F2018%2F10%2F05%2Fubuntu%2Bnginx%2BPHP7.1%2Bmysql%2F</url>
-    <content type="text"><![CDATA[ubuntu16.04上安装nginx+PHP7.1+mysql 初始工作——换源换源就是更新软件的下载源，ubuntu如果没有换源的话，默认源是欧洲的，下载速度很慢，还有可能报一些404的错误，所以要换成国内的下载源，原来用的是清华的源，但是清华源在某大的时候可能会被墙，换成了较好的163源。 ubuntu的下载源在/etc/apt下的source.list中。 把里面的内容备份后，换成163的源。 下面是ubuntu 16.04的163源12345678910deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse 保存，退出后，执行下面的命令更新。 安装nginxapt源更新好以后，就可以安装 nginx了 sudo apt-get install nginx 安装好以后可以 nginx -v 看一下nginx的版本 这时候启动nginx 并设置开机启动 然后访问192.168.33.10，可以看到welcome to nginx 安装PHP7.1按以下命令安装PHP 安装后php -v 查看自己是否安装成 这样PHP7.1就安装好了 安装mysql然后安装mysql 安装过程中会让输入root密码，切记啊！ 登入mysql然后使用 Ctrl+D 退出mysql nginx和PHP的配置配置PHP安装php-fpm 1sudo apt install php7.1-fpm 修改 文件12 sudo vim /etc/php/7.1/fpm/php.ini123456将```;cgi.fix_pathinfo=1```改为```cgi.fix_pathinfo=0```（```/```搜索）重启php7.1-fpm```sudo service php7.1-fpm restart 配置nginxNginx的服务器配置文件在12```sudo vim /etc/nginx/sites-available/default 做以下修改 然后重启 nginx systemctl reload nginx```123在```/var/www 下增加test.php文件vim test.php```123456输入```php&lt;?php echo phpinfo();?&gt; 访问192.168.33.10/test.php可以看到 说明配置成功啦！！！]]></content>
+    <content type="text"><![CDATA[ubuntu16.04上安装nginx+PHP7.1+mysql 初始工作——换源换源就是更新软件的下载源，ubuntu如果没有换源的话，默认源是欧洲的，下载速度很慢，还有可能报一些404的错误，所以要换成国内的下载源，原来用的是清华的源，但是清华源在某大的时候可能会被墙，换成了较好的163源。 ubuntu的下载源在/etc/apt下的source.list中。 把里面的内容备份后，换成163的源。 下面是ubuntu 16.04的163源12345678910deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiversedeb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiversedeb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse 保存，退出后，执行下面的命令更新。 安装nginxapt源更新好以后，就可以安装 nginx了 sudo apt-get install nginx 安装好以后可以 nginx -v 看一下nginx的版本 这时候启动nginx 并设置开机启动 然后访问192.168.33.10，可以看到welcome to nginx 安装PHP7.1按以下命令安装PHP 安装后php -v 查看自己是否安装成 这样PHP7.1就安装好了 安装mysql然后安装mysql 安装过程中会让输入root密码，切记啊！ 登入mysql然后使用 Ctrl+D 退出mysql nginx和PHP的配置配置PHP安装php-fpm 1sudo apt install php7.1-fpm 修改 php.ini 文件 1sudo vim /etc/php/7.1/fpm/php.ini 将;cgi.fix_pathinfo=1 修改为 cgi.fix_pathinfo=0（去掉注释）/ 用于搜索 重启php7.1-fpm 1sudo service php7.1-fpm restart 配置nginxNginx的服务器配置文件在/etc/nginx/sites-available的default 1sudo vim /etc/nginx/sites-available/default 做以下修改 然后重启 nginx 1sudo systemctl reload nginx 在1/var/www 下增加test.php文件1sudo vim test.php 输入 123&lt;?php echo phpinfo();?&gt; 访问192.168.33.10/test.php可以看到 已经配置成功啦！！！]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>vagrant ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vagrant的安装&简单的配置]]></title>
+    <url>%2F2018%2F10%2F05%2Fvagrant%2F</url>
+    <content type="text"><![CDATA[一般服务器上的运行环境都是Linux，如果开发者项目在本地 （windows）上运行正常的话，放到服务器上会出现一些bug，这是开发环境和生成环境不一致而造成的。这就需要一个和服务器运行环境一致的开发环境。当时打算做个双系统，在做之前组长推荐了vagrant虚拟机，发现内存占用并不是很大，而且还可以在开发的时候用Windows上的软件，非常的方便。 一段时间后组内人的vagrant的虚拟机由于种种扫操作，很多都烂掉了，重装的时候又遇到了各种各样的坑。作为为数不多的vagrant虚拟机还健在的人，被强迫又装了一个，记录了搭建vagrant环境的一些步骤和踩过的坑。 提前准备 先确保电脑已经在BIOS中开启了虚拟化技术（大部分Windows笔记本可以通过拿小针插电源插口旁的小孔进入BIOS设置。进入后在Configuration中将Intel Virtualization Technology改为Enable，然后保存并退出。） 安装VirtualBox下载后一路傻瓜式安装（不要安装最新版——来自组长的提醒 ） 安装vagrant下载后一路傻瓜式安装(先安装VirtualBox在安装vagrant) vagrant up &amp; ssh提前准备在做好以后就可以开始搞事情了。创建一个文件夹，命名为ubuntu。可以利用git bash、cmder或者cmd进入这个文件夹。然后选一个Vagrant Box(我选的是Ubuntu 16.04，以此为例) 也可以迅雷下载box，然后添加到ubuntu文件夹中，然后 vagrant init box的名称接下啦，运行vagrant up启动虚拟机。将会非常漫长。up好以后打开VirtualBox客户端可以看到虚拟机已经正常启动。打开ubuntu会出有vagrantfile和.vagrant文件夹up好以后就可以通过ssh访问虚拟机，部分电脑用git bash会出现这种情况很无奈，只好用cmd ssh登录了到此，vagrant就安装好了。 vagrant配置vagrant端口转发在vagrantfile中取消下面几行的注释 具体的vagrant的三种网络配置的作用可以参考这篇博文：Vagrant 三种网络配置详解 vagrant 共享文件夹在vagrantfile中进行修改这样我就可以在把项目放在D盘的project下，然后在主机使用IDE写代码，在虚拟机中运行。最后记得vagrant reload 重启vagrant，让vagrantfile里面的配置生效 本机连接vagrant的mysql修改 mysql的配置文件my.cnf ubuntu16.04应该在1/etc/mysql/mysql.conf.d 将mysqld.cnf中的bind_address=127.0.0.1修改为bind_address=0.0.0.0 重启mysql sudo service mysql reload 然后设置mysql允许远程访问 1234mysql -u root -puse mysql;update user set host = &apos;%&apos; where user = &apos;root&apos;;exit; 然后重启一下vagrant Updating]]></content>
+      <categories>
+        <category>vagrant</category>
+      </categories>
+      <tags>
+        <tag>vagrant</tag>
       </tags>
   </entry>
   <entry>

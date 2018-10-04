@@ -139,7 +139,8 @@
 <meta property="og:description" content="ubuntu上laravel开发环境的安装（php和nginx）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://leezhijie.github.io/uploads/laravel/php_laravel.png">
-<meta property="og:updated_time" content="2018-10-04T16:20:06.798Z">
+<meta property="og:image" content="https://leezhijie.github.io/uploads/laravel/composer.png">
+<meta property="og:updated_time" content="2018-10-04T16:56:02.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu上安装composer和laravel">
 <meta name="twitter:description" content="ubuntu上laravel开发环境的安装（php和nginx）">
@@ -410,7 +411,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T00:20:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T00:56:02+08:00">
                 2018-10-05
               </time>
             
@@ -464,7 +465,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  330
+                  351
                 </span>
               
 
@@ -522,16 +523,22 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &quot;unlink(&apos;composer-setup.php&apos;);&quot;删除安装脚本</span><br></pre></td></tr></table></figure>
 <p>全局安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv composer.phar /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
-<p>安装完以后<figure class="highlight plain"><figcaption><span>-v```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![composer](/uploads/laravel/composer.png)</span><br><span class="line"></span><br><span class="line">说明安装成功了。</span><br><span class="line"></span><br><span class="line">#### 配置composer</span><br><span class="line"></span><br><span class="line">修改composer的全局配置文件</span><br></pre></td></tr></table></figure></p>
-<p>composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com" target="_blank" rel="noopener">https://packagist.phpcomposer.com</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后执行```composer selfupdate</span><br></pre></td></tr></table></figure></p>
+<p>安装完以后查看composer版本 <strong>composer -v</strong></p>
+<p><img src="/uploads/laravel/composer.png" alt="composer"></p>
+<p>说明安装成功了。</p>
+<h4 id="配置composer"><a href="#配置composer" class="headerlink" title="配置composer"></a>配置composer</h4><p>修改composer的全局配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure>
+<p>然后执行 <strong>composer selfupdate</strong></p>
 <h2 id="安装配置laravel"><a href="#安装配置laravel" class="headerlink" title="安装配置laravel"></a>安装配置laravel</h2><p>安装laravel</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer global require &quot;laravel/installer=~1.1&quot;</span><br></pre></td></tr></table></figure>
-<p>配置laravel</p>
-<figure class="highlight plain"><figcaption><span>PATH</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">并填加在```/etc/bash.bashrc```执行```source ~/.bashrc```让环境变量立即生效</span><br><span class="line"></span><br><span class="line">然后就去```/var/www```新建一个laravel项目</span><br><span class="line"></span><br><span class="line">```laravel new laravel</span><br></pre></td></tr></table></figure>
+<p>配置laravel<br>使用下面语句添加环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;~/.config/composer/vendor/bin:$PATH&quot;</span><br></pre></td></tr></table></figure></p>
+<p>并填加在 <strong>/etc/bash.bashrc</strong> 执行 <strong>source ~/.bashrc</strong> 让环境变量立即生效</p>
+<p>然后就去 <strong>/var/www</strong>新建一个laravel项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new laravel</span><br></pre></td></tr></table></figure>
 <p>在laravel new的时候会报几个文件没有权限，直接给777权限就OK了。</p>
 <p>修改laravel目录权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R :www-data /var/www/laravel</span><br><span class="line">sudo chmod -R 775 /var/www/laravel/storage</span><br></pre></td></tr></table></figure>
-<p>然后laravel就弄好了，跑起来吧。</p>
+<p>然后laravel就弄好了，可以开始表演了。</p>
 
       
     </div>
@@ -596,7 +603,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vagrant-ubuntu-laravel/" rel="tag"># vagrant ubuntu laravel</a>
+            <a href="/tags/laravel/" rel="tag"># laravel</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           
         </div>
       
@@ -633,10 +642,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/05/vagrant/" rel="prev" title="vagrant的安装&简单的配置">
-                vagrant的安装&简单的配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -744,7 +749,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -815,7 +820,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器要求"><span class="nav-number">1.1.</span> <span class="nav-text">服务器要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PHP扩展"><span class="nav-number">1.2.</span> <span class="nav-text">安装PHP扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置composer"><span class="nav-number">1.3.</span> <span class="nav-text">安装配置composer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装composer"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装composer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置laravel"><span class="nav-number">2.</span> <span class="nav-text">安装配置laravel</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器要求"><span class="nav-number">1.1.</span> <span class="nav-text">服务器要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PHP扩展"><span class="nav-number">1.2.</span> <span class="nav-text">安装PHP扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置composer"><span class="nav-number">1.3.</span> <span class="nav-text">安装配置composer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装composer"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装composer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置composer"><span class="nav-number">1.3.2.</span> <span class="nav-text">配置composer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置laravel"><span class="nav-number">2.</span> <span class="nav-text">安装配置laravel</span></a></li></ol></div>
             
 
           </div>
@@ -849,7 +854,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.2k</span>
+    <span title="Site words total count">5.3k</span>
   
 </div>
 
