@@ -474,7 +474,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  542
+                  534
                 </span>
               
 
@@ -516,17 +516,14 @@
 
       
         <p>ubuntu16.04上安装nginx+PHP7.1+mysql</p>
-<h2>初始工作——换源</h2>
-<p>换源就是更新软件的下载源，ubuntu如果没有换源的话，默认源是欧洲的，下载速度很慢，还有可能报一些404的错误，所以要换成国内的下载源，原来用的是清华的源，但是清华源在某大的时候可能会被墙，换成了较好的163源。</p>
+<h2 id="初始工作——换源"><a href="#初始工作——换源" class="headerlink" title="初始工作——换源"></a>初始工作——换源</h2><p>换源就是更新软件的下载源，ubuntu如果没有换源的话，默认源是欧洲的，下载速度很慢，还有可能报一些404的错误，所以要换成国内的下载源，原来用的是清华的源，但是清华源在某大的时候可能会被墙，换成了较好的163源。</p>
 <p>ubuntu的下载源在/etc/apt下的source.list中。</p>
 <p><img src="/uploads/Linux/vim_sources.list.png" alt="sources.list"></p>
 <p>把里面的内容备份后，换成163的源。</p>
-<p>下面是ubuntu 16.04的163源
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
+<p>下面是ubuntu 16.04的163源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
 <p>保存，退出后，执行下面的命令更新。</p>
 <p><img src="/uploads/Linux/update_apt.png" alt="update_apt"></p>
-<h2>安装nginx</h2>
-<p>apt源更新好以后，就可以安装 nginx了</p>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>apt源更新好以后，就可以安装 nginx了</p>
 <p>sudo apt-get install nginx</p>
 <p><img src="/uploads/Linux/install_nginx.png" alt="install_nginx"></p>
 <p>安装好以后可以 nginx -v 看一下nginx的版本</p>
@@ -534,40 +531,32 @@
 <p><img src="/uploads/Linux/start_nginx.png" alt="nginx_start"></p>
 <p>然后访问192.168.33.10，可以看到welcome to nginx</p>
 <p><img src="/uploads/Linux/nginx.png" alt="nginx"></p>
-<h2>安装PHP7.1</h2>
-<p>按以下命令安装PHP</p>
+<h2 id="安装PHP7-1"><a href="#安装PHP7-1" class="headerlink" title="安装PHP7.1"></a>安装PHP7.1</h2><p>按以下命令安装PHP</p>
 <p><img src="/uploads/Linux/php_install.png" alt="php_install"></p>
 <p>安装后php -v 查看自己是否安装成</p>
 <p><img src="/uploads/Linux/php-v.png" alt=""></p>
 <p>这样PHP7.1就安装好了</p>
-<h2>安装mysql</h2>
-<p>然后安装mysql</p>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><p>然后安装mysql</p>
 <p><img src="/uploads/Linux/mysql.png" alt=""></p>
 <p>安装过程中会让输入root密码，切记啊！</p>
 <p><img src="/uploads/Linux/mysql_install.png" alt=""></p>
-<p>登入mysql
-然后使用  <code>Ctrl + D</code>    退出mysql</p>
-<h2>nginx和PHP的配置</h2>
-<h3>配置PHP</h3>
-<p>安装php-fpm</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7.1-fpm</span><br></pre></td></tr></table></figure></p>
+<p>登入mysql<br>然后使用  <code>Ctrl + D</code>    退出mysql</p>
+<h2 id="nginx和PHP的配置"><a href="#nginx和PHP的配置" class="headerlink" title="nginx和PHP的配置"></a>nginx和PHP的配置</h2><h3 id="配置PHP"><a href="#配置PHP" class="headerlink" title="配置PHP"></a>配置PHP</h3><p>安装php-fpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7.1-fpm</span><br></pre></td></tr></table></figure>
 <p>修改 <code>php.ini</code> 文件</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  vim /etc/php/7.1/fpm/php.ini</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  vim /etc/php/7.1/fpm/php.ini</span><br></pre></td></tr></table></figure>
 <p>将 <code>;cgi.fix_pathinfo=1</code> 修改为 <code>cgi.fix_pathinfo=0</code>（去掉注释） <code>/</code>  用于搜索</p>
 <p>重启php7.1-fpm</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php7.1-fpm restart</span><br></pre></td></tr></table></figure></p>
-<h3>配置nginx</h3>
-<p>Nginx的服务器配置文件在
-<code>/etc/nginx/sites-available</code>的<code>default</code></p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php7.1-fpm restart</span><br></pre></td></tr></table></figure>
+<h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p>Nginx的服务器配置文件在<br><code>/etc/nginx/sites-available</code>的<code>default</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
 <p>做以下修改</p>
 <p><img src="/uploads/Linux/nginx_default.png" alt=""></p>
 <p>然后重启 nginx</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure></p>
-<p>在<code>/var/www</code>下增加test.php文件
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim test.php</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
+<p>在<code>/var/www</code>下增加test.php文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim test.php</span><br></pre></td></tr></table></figure></p>
 <p>输入</p>
-<p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>访问<code>192.168.33.10/test.php</code>可以看到</p>
 <p><img src="/uploads/Linux/phpinfo.png" alt=""></p>
 <p>已经配置成功啦！！！</p>
@@ -856,7 +845,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">初始工作——换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">安装PHP7.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">nginx和PHP的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">配置PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">配置nginx</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始工作——换源"><span class="nav-number">1.</span> <span class="nav-text">初始工作——换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">2.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PHP7-1"><span class="nav-number">3.</span> <span class="nav-text">安装PHP7.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装mysql"><span class="nav-number">4.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx和PHP的配置"><span class="nav-number">5.</span> <span class="nav-text">nginx和PHP的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置PHP"><span class="nav-number">5.1.</span> <span class="nav-text">配置PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置nginx"><span class="nav-number">5.2.</span> <span class="nav-text">配置nginx</span></a></li></ol></li></ol></div>
             
 
           </div>
